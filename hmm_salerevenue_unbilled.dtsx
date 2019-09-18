@@ -1,0 +1,2445 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/15/2016 9:33:40 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAP-2K3LFV1"
+  DTS:CreatorName="CCS\bcheruvathur"
+  DTS:DTSID="{4864DD1E-CA49-4641-9B45-D81408BF9BA8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1300.371"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="hmm_salerevenue_unbilled"
+  DTS:PackageType="5"
+  DTS:VersionBuild="45"
+  DTS:VersionGUID="{4B355368-A780-4863-A1ED-3EFC3080E843}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[HMM]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{89AFB9DF-9FD2-4B04-8905-92D65EDB64F7}"
+      DTS:ObjectName="HMM">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=CDCVSQL04P\HAZMATMGRPRD;User ID=SQL_HMM_NP_RO;Initial Catalog=RM97PROD;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[wm]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{C1FCBD90-34E1-43A9-BC3F-5F4779299450}"
+      DTS:ObjectName="wm">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=wm_dm;Dsn=DM_PROD;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\HMM_SALESREV_UNBILLED"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{8FB539E9-7067-4559-AD08-FBB2F9FCA5C7}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="HMM_SALESREV_UNBILLED"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination"
+              componentClassID="Attunity.SSISODBCDst"
+              description="ODBC Destination"
+              name="ODBC Destination"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The method used for inserting data. Possible values are 'Batch' or 'Row by row'."
+                  expressionType="Notify"
+                  name="InsertMethod"
+                  typeConverter="InsertMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs"
+                  typeConverter="BindCharColumnsAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The ODBC C data type for binding numeric data."
+                  expressionType="Notify"
+                  name="BindNumericAs"
+                  typeConverter="BindNumericAs">0</property>
+                <property
+                  dataType="System.String"
+                  description="Destination table"
+                  expressionType="Notify"
+                  name="TableName">"WM_DM"."HMM_SALESREV_UNBILLED"</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows inserted per batch."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of rows inserted under the same transaction."
+                  expressionType="Notify"
+                  name="TransactionSize">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Connections[ODBCConnection]"
+                  connectionManagerID="Package.ConnectionManagers[wm]"
+                  connectionManagerRefId="Package.ConnectionManagers[wm]"
+                  description="The ODBC runtime connection"
+                  name="ODBCConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="ODBC Destination Input"
+                  truncationRowDisposition="FailComponent">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[repType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="repType"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REPTYPE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[repType]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[PayerAcct]"
+                      cachedDataType="wstr"
+                      cachedLength="19"
+                      cachedName="PayerAcct"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PAYERACCT]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[PayerAcct]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[serviceDate]"
+                      cachedDataType="dbDate"
+                      cachedName="serviceDate"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[SERVICEDATE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[serviceDate]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[invoiceDate]"
+                      cachedDataType="dbDate"
+                      cachedName="invoiceDate"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[INVOICEDATE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[invoiceDate]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[dateReceived]"
+                      cachedDataType="dbDate"
+                      cachedName="dateReceived"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[DATERECEIVED]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[dateReceived]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[STMT_NUMBER]"
+                      cachedDataType="i4"
+                      cachedName="STMT_NUMBER"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[STMT_NUMBER]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[STMT_NUMBER]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[Cust]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Cust"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[CUST]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cust]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[Locn]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="Locn"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LOCN]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[Locn]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[territory]"
+                      cachedDataType="wstr"
+                      cachedLength="30"
+                      cachedName="territory"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TERRITORY]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[territory]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[lineArea]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="lineArea"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LINEAREA]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[lineArea]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[lineSvc]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="lineSvc"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LINESVC]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[lineSvc]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[contType]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="contType"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[CONTTYPE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[contType]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[WO#]"
+                      cachedDataType="i4"
+                      cachedName="WO#"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[WO#]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[WO#]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[userName]"
+                      cachedDataType="wstr"
+                      cachedLength="201"
+                      cachedName="userName"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[USERNAME]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[userName]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[uom]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="uom"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[UOM]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[uom]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[lineDecription]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="lineDecription"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LINEDECRIPTION]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[lineDecription]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[comment]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="comment"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[COMMENT1]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[comment]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[category]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="category"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[CATEGORY1]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[category]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[finalDest]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="finalDest"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[FINALDEST]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[finalDest]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[serviceCode]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="serviceCode"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[SERVICECODE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[serviceCode]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[subTotNoTax]"
+                      cachedDataType="numeric"
+                      cachedName="subTotNoTax"
+                      cachedPrecision="37"
+                      cachedScale="10"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[SUBTOTNOTAX]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[subTotNoTax]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[gstAmt]"
+                      cachedDataType="numeric"
+                      cachedName="gstAmt"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[GSTAMT]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[gstAmt]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[priClass]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="priClass"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PRICLASS]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[priClass]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[pstAmt]"
+                      cachedDataType="numeric"
+                      cachedName="pstAmt"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PSTAMT]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[pstAmt]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[hstAmt]"
+                      cachedDataType="numeric"
+                      cachedName="hstAmt"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[HSTAMT]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[hstAmt]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[units]"
+                      cachedDataType="numeric"
+                      cachedName="units"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[UNITS]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[units]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[unitPrice]"
+                      cachedDataType="numeric"
+                      cachedName="unitPrice"
+                      cachedPrecision="38"
+                      cachedScale="20"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[UNITPRICE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[unitPrice]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[secClass]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="secClass"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[SECCLASS]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[secClass]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[billingType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="4"
+                      cachedName="billingType"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[BILLINGTYPE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[billingType]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[landDesc]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="19"
+                      cachedName="landDesc"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LANDDESC]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[landDesc]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[custArea]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="custArea"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[CUSTAREA]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[custArea]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[quantity]"
+                      cachedDataType="numeric"
+                      cachedName="quantity"
+                      cachedPrecision="18"
+                      cachedScale="5"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[QUANTITY]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantity]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[manifest]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="manifest"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[MANIFEST]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[manifest]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[wasteNotes]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="wasteNotes"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[WASTENOTES]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[wasteNotes]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[invType]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1"
+                      cachedName="invType"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[INVTYPE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[invType]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[genAcct#]"
+                      cachedDataType="wstr"
+                      cachedLength="19"
+                      cachedName="genAcct#"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[GENACCT#]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[genAcct#]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[lineStatus]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="lineStatus"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LINESTATUS]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[lineStatus]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[percentDone]"
+                      cachedDataType="r8"
+                      cachedName="percentDone"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PERCENTDONE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[percentDone]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[transferStation]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="transferStation"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TRANSFERSTATION]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[transferStation]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[glValue]"
+                      cachedDataType="wstr"
+                      cachedLength="281"
+                      cachedName="glValue"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[GLVALUE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[glValue]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[requestor]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="255"
+                      cachedName="requestor"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REQUESTOR]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[requestor]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[discrepancy]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="discrepancy"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[DISCREPANCY]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[discrepancy]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[woStatus]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="9"
+                      cachedName="woStatus"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[WOSTATUS]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[woStatus]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[payerCust]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="payerCust"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PAYERCUST]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[payerCust]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[Lat]"
+                      cachedDataType="r8"
+                      cachedName="Lat"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LAT]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[Lat]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[Long]"
+                      cachedDataType="r8"
+                      cachedName="Long"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LONG1]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[Long]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[defaultPrice]"
+                      cachedDataType="r8"
+                      cachedName="defaultPrice"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[DEFAULTPRICE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[defaultPrice]" />
+                    <inputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].Columns[totalCost]"
+                      cachedDataType="r8"
+                      cachedName="totalCost"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTALCOST]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[totalCost]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REPTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="REPTYPE" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PAYERACCT]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="PAYERACCT" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[SERVICEDATE]"
+                      dataType="dbTimeStamp"
+                      name="SERVICEDATE" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[INVOICEDATE]"
+                      dataType="dbTimeStamp"
+                      name="INVOICEDATE" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[DATERECEIVED]"
+                      dataType="dbTimeStamp"
+                      name="DATERECEIVED" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[STMT_NUMBER]"
+                      dataType="numeric"
+                      name="STMT_NUMBER"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[CUST]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="CUST" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LOCN]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="LOCN" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TERRITORY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="TERRITORY" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LINEAREA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="LINEAREA" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LINESVC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="LINESVC" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[CONTTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CONTTYPE" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[WO#]"
+                      dataType="numeric"
+                      name="WO#"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[USERNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="USERNAME" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[UOM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="UOM" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LINEDECRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="LINEDECRIPTION" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[COMMENT1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="COMMENT1" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[CATEGORY1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CATEGORY1" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[FINALDEST]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="FINALDEST" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[SERVICECODE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SERVICECODE" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[SUBTOTNOTAX]"
+                      dataType="numeric"
+                      name="SUBTOTNOTAX"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[GSTAMT]"
+                      dataType="numeric"
+                      name="GSTAMT"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PSTAMT]"
+                      dataType="numeric"
+                      name="PSTAMT"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[HSTAMT]"
+                      dataType="numeric"
+                      name="HSTAMT"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[UNITS]"
+                      dataType="numeric"
+                      name="UNITS"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[UNITPRICE]"
+                      dataType="numeric"
+                      name="UNITPRICE"
+                      precision="38"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PRICLASS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="PRICLASS" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[SECCLASS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="SECCLASS" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[BILLINGTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="BILLINGTYPE" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LANDDESC]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="LANDDESC" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[CUSTAREA]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="CUSTAREA" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[QUANTITY]"
+                      dataType="numeric"
+                      name="QUANTITY"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[MANIFEST]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="MANIFEST" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[WASTENOTES]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="WASTENOTES" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[INVTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="INVTYPE" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[GENACCT#]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="GENACCT#" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LINESTATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="LINESTATUS" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PERCENTDONE]"
+                      dataType="r8"
+                      name="PERCENTDONE" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TRANSFERSTATION]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="TRANSFERSTATION" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[GLVALUE]"
+                      codePage="1252"
+                      dataType="str"
+                      length="281"
+                      name="GLVALUE" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REQUESTOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="REQUESTOR" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[DISCREPANCY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="DISCREPANCY" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[WOSTATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="WOSTATUS" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PAYERCUST]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="PAYERCUST" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LAT]"
+                      dataType="r8"
+                      name="LAT" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LONG1]"
+                      dataType="r8"
+                      name="LONG1" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[DEFAULTPRICE]"
+                      dataType="r8"
+                      name="DEFAULTPRICE" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTALCOST]"
+                      dataType="r8"
+                      name="TOTALCOST" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output]"
+                  isErrorOut="true"
+                  name="ODBC Destination Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[REPTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REPTYPE]"
+                      length="10"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[REPTYPE]"
+                      name="REPTYPE" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[PAYERACCT]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PAYERACCT]"
+                      length="20"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[PAYERACCT]"
+                      name="PAYERACCT" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[SERVICEDATE]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[SERVICEDATE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[SERVICEDATE]"
+                      name="SERVICEDATE" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[INVOICEDATE]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[INVOICEDATE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[INVOICEDATE]"
+                      name="INVOICEDATE" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[DATERECEIVED]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[DATERECEIVED]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[DATERECEIVED]"
+                      name="DATERECEIVED" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[STMT_NUMBER]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[STMT_NUMBER]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[STMT_NUMBER]"
+                      name="STMT_NUMBER"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[CUST]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[CUST]"
+                      length="100"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[CUST]"
+                      name="CUST" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LOCN]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LOCN]"
+                      length="100"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LOCN]"
+                      name="LOCN" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TERRITORY]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TERRITORY]"
+                      length="100"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TERRITORY]"
+                      name="TERRITORY" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LINEAREA]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LINEAREA]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LINEAREA]"
+                      name="LINEAREA" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LINESVC]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LINESVC]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LINESVC]"
+                      name="LINESVC" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[CONTTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[CONTTYPE]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[CONTTYPE]"
+                      name="CONTTYPE" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[WO#]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[WO#]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[WO#]"
+                      name="WO#"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[USERNAME]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[USERNAME]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[USERNAME]"
+                      name="USERNAME" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[UOM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[UOM]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[UOM]"
+                      name="UOM" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LINEDECRIPTION]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LINEDECRIPTION]"
+                      length="60"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LINEDECRIPTION]"
+                      name="LINEDECRIPTION" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[COMMENT1]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[COMMENT1]"
+                      length="100"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[COMMENT1]"
+                      name="COMMENT1" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[CATEGORY1]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[CATEGORY1]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[CATEGORY1]"
+                      name="CATEGORY1" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[FINALDEST]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[FINALDEST]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[FINALDEST]"
+                      name="FINALDEST" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[SERVICECODE]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[SERVICECODE]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[SERVICECODE]"
+                      name="SERVICECODE" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[SUBTOTNOTAX]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[SUBTOTNOTAX]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[SUBTOTNOTAX]"
+                      name="SUBTOTNOTAX"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[GSTAMT]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[GSTAMT]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[GSTAMT]"
+                      name="GSTAMT"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[PSTAMT]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PSTAMT]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[PSTAMT]"
+                      name="PSTAMT"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[HSTAMT]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[HSTAMT]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[HSTAMT]"
+                      name="HSTAMT"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[UNITS]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[UNITS]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[UNITS]"
+                      name="UNITS"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[UNITPRICE]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[UNITPRICE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[UNITPRICE]"
+                      name="UNITPRICE"
+                      precision="38"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[PRICLASS]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PRICLASS]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[PRICLASS]"
+                      name="PRICLASS" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[SECCLASS]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[SECCLASS]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[SECCLASS]"
+                      name="SECCLASS" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[BILLINGTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[BILLINGTYPE]"
+                      length="10"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[BILLINGTYPE]"
+                      name="BILLINGTYPE" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LANDDESC]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LANDDESC]"
+                      length="20"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LANDDESC]"
+                      name="LANDDESC" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[CUSTAREA]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[CUSTAREA]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[CUSTAREA]"
+                      name="CUSTAREA" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[QUANTITY]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[QUANTITY]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[QUANTITY]"
+                      name="QUANTITY"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[MANIFEST]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[MANIFEST]"
+                      length="60"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[MANIFEST]"
+                      name="MANIFEST" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[WASTENOTES]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[WASTENOTES]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[WASTENOTES]"
+                      name="WASTENOTES" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[INVTYPE]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[INVTYPE]"
+                      length="2"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[INVTYPE]"
+                      name="INVTYPE" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[GENACCT#]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[GENACCT#]"
+                      length="20"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[GENACCT#]"
+                      name="GENACCT#" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LINESTATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LINESTATUS]"
+                      length="25"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LINESTATUS]"
+                      name="LINESTATUS" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[PERCENTDONE]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PERCENTDONE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[PERCENTDONE]"
+                      name="PERCENTDONE" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TRANSFERSTATION]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TRANSFERSTATION]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TRANSFERSTATION]"
+                      name="TRANSFERSTATION" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[GLVALUE]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[GLVALUE]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[GLVALUE]"
+                      name="GLVALUE" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[REQUESTOR]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[REQUESTOR]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[REQUESTOR]"
+                      name="REQUESTOR" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[DISCREPANCY]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[DISCREPANCY]"
+                      length="5"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[DISCREPANCY]"
+                      name="DISCREPANCY" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[WOSTATUS]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[WOSTATUS]"
+                      length="10"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[WOSTATUS]"
+                      name="WOSTATUS" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[PAYERCUST]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[PAYERCUST]"
+                      length="100"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[PAYERCUST]"
+                      name="PAYERCUST" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LAT]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LAT]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LAT]"
+                      name="LAT" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LONG1]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[LONG1]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[LONG1]"
+                      name="LONG1" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[DEFAULTPRICE]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[DEFAULTPRICE]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[DEFAULTPRICE]"
+                      name="DEFAULTPRICE" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TOTALCOST]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input].ExternalColumns[TOTALCOST]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[TOTALCOST]"
+                      name="TOTALCOST" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Outputs[ODBC Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[v_HMM_SALESREV_UNBILLED]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[HMM]"
+                  connectionManagerRefId="Package.ConnectionManagers[HMM]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[repType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[repType]"
+                      length="8"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[repType]"
+                      name="repType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[PayerAcct]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PayerAcct]"
+                      length="19"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[PayerAcct]"
+                      name="PayerAcct"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[serviceDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[serviceDate]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[serviceDate]"
+                      name="serviceDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[invoiceDate]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[invoiceDate]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[invoiceDate]"
+                      name="invoiceDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[dateReceived]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dateReceived]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[dateReceived]"
+                      name="dateReceived"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[STMT_NUMBER]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[STMT_NUMBER]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[STMT_NUMBER]"
+                      name="STMT_NUMBER"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cust]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Cust]"
+                      length="100"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[Cust]"
+                      name="Cust"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[Locn]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Locn]"
+                      length="100"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[Locn]"
+                      name="Locn"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[territory]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[territory]"
+                      length="30"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[territory]"
+                      name="territory"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[lineArea]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[lineArea]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[lineArea]"
+                      name="lineArea"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[lineSvc]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[lineSvc]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[lineSvc]"
+                      name="lineSvc"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[contType]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[contType]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[contType]"
+                      name="contType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[WO#]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WO#]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[WO#]"
+                      name="WO#"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[userName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[userName]"
+                      length="201"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[userName]"
+                      name="userName"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[uom]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[uom]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[uom]"
+                      name="uom"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[lineDecription]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[lineDecription]"
+                      length="50"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[lineDecription]"
+                      name="lineDecription"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[comment]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[comment]"
+                      length="100"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[comment]"
+                      name="comment"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[category]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[category]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[category]"
+                      name="category"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[finalDest]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[finalDest]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[finalDest]"
+                      name="finalDest"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[serviceCode]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[serviceCode]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[serviceCode]"
+                      name="serviceCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[subTotNoTax]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[subTotNoTax]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[subTotNoTax]"
+                      name="subTotNoTax"
+                      precision="37"
+                      scale="10"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[totalCost]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[totalCost]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[totalCost]"
+                      name="totalCost"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[gstAmt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[gstAmt]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[gstAmt]"
+                      name="gstAmt"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[pstAmt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[pstAmt]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[pstAmt]"
+                      name="pstAmt"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[hstAmt]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[hstAmt]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[hstAmt]"
+                      name="hstAmt"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[units]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[units]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[units]"
+                      name="units"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[unitPrice]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[unitPrice]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[unitPrice]"
+                      name="unitPrice"
+                      precision="38"
+                      scale="20"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[defaultPrice]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[defaultPrice]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[defaultPrice]"
+                      name="defaultPrice"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[priClass]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[priClass]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[priClass]"
+                      name="priClass"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[secClass]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[secClass]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[secClass]"
+                      name="secClass"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[billingType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[billingType]"
+                      length="4"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[billingType]"
+                      name="billingType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[landDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[landDesc]"
+                      length="19"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[landDesc]"
+                      name="landDesc"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[custArea]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[custArea]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[custArea]"
+                      name="custArea"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantity]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantity]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[quantity]"
+                      name="quantity"
+                      precision="18"
+                      scale="5"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[manifest]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[manifest]"
+                      length="50"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[manifest]"
+                      name="manifest"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[wasteNotes]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[wasteNotes]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[wasteNotes]"
+                      name="wasteNotes"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[invType]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[invType]"
+                      length="1"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[invType]"
+                      name="invType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[genAcct#]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[genAcct#]"
+                      length="19"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[genAcct#]"
+                      name="genAcct#"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[lineStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[lineStatus]"
+                      length="25"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[lineStatus]"
+                      name="lineStatus"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[percentDone]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[percentDone]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[percentDone]"
+                      name="percentDone"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[transferStation]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[transferStation]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[transferStation]"
+                      name="transferStation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[glValue]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[glValue]"
+                      length="281"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[glValue]"
+                      name="glValue"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[requestor]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[requestor]"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[requestor]"
+                      name="requestor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[discrepancy]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[discrepancy]"
+                      length="3"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[discrepancy]"
+                      name="discrepancy"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[woStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[woStatus]"
+                      length="9"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[woStatus]"
+                      name="woStatus"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[payerCust]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[payerCust]"
+                      length="100"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[payerCust]"
+                      name="payerCust"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[Lat]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Lat]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[Lat]"
+                      name="Lat"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[Long]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Long]"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].Columns[Long]"
+                      name="Long"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[repType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="repType" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[PayerAcct]"
+                      dataType="wstr"
+                      length="19"
+                      name="PayerAcct" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[serviceDate]"
+                      dataType="dbDate"
+                      name="serviceDate" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[invoiceDate]"
+                      dataType="dbDate"
+                      name="invoiceDate" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dateReceived]"
+                      dataType="dbDate"
+                      name="dateReceived" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[STMT_NUMBER]"
+                      dataType="i4"
+                      name="STMT_NUMBER" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Cust]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Cust" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Locn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="Locn" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[territory]"
+                      dataType="wstr"
+                      length="30"
+                      name="territory" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[lineArea]"
+                      dataType="wstr"
+                      length="255"
+                      name="lineArea" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[lineSvc]"
+                      dataType="wstr"
+                      length="255"
+                      name="lineSvc" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[contType]"
+                      dataType="wstr"
+                      length="255"
+                      name="contType" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WO#]"
+                      dataType="i4"
+                      name="WO#" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[userName]"
+                      dataType="wstr"
+                      length="201"
+                      name="userName" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[uom]"
+                      dataType="wstr"
+                      length="255"
+                      name="uom" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[lineDecription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="lineDecription" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[comment]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="comment" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[category]"
+                      dataType="wstr"
+                      length="255"
+                      name="category" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[finalDest]"
+                      dataType="wstr"
+                      length="255"
+                      name="finalDest" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[serviceCode]"
+                      dataType="wstr"
+                      length="255"
+                      name="serviceCode" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[subTotNoTax]"
+                      dataType="numeric"
+                      name="subTotNoTax"
+                      precision="37"
+                      scale="10" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[totalCost]"
+                      dataType="r8"
+                      name="totalCost" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[gstAmt]"
+                      dataType="numeric"
+                      name="gstAmt"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[pstAmt]"
+                      dataType="numeric"
+                      name="pstAmt"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[hstAmt]"
+                      dataType="numeric"
+                      name="hstAmt"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[units]"
+                      dataType="numeric"
+                      name="units"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[unitPrice]"
+                      dataType="numeric"
+                      name="unitPrice"
+                      precision="38"
+                      scale="20" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[defaultPrice]"
+                      dataType="r8"
+                      name="defaultPrice" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[priClass]"
+                      dataType="wstr"
+                      length="255"
+                      name="priClass" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[secClass]"
+                      dataType="wstr"
+                      length="255"
+                      name="secClass" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[billingType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      name="billingType" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[landDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      name="landDesc" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[custArea]"
+                      dataType="wstr"
+                      length="255"
+                      name="custArea" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[quantity]"
+                      dataType="numeric"
+                      name="quantity"
+                      precision="18"
+                      scale="5" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[manifest]"
+                      dataType="wstr"
+                      length="50"
+                      name="manifest" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[wasteNotes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="wasteNotes" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[invType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      name="invType" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[genAcct#]"
+                      dataType="wstr"
+                      length="19"
+                      name="genAcct#" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[lineStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="lineStatus" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[percentDone]"
+                      dataType="r8"
+                      name="percentDone" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[transferStation]"
+                      dataType="wstr"
+                      length="255"
+                      name="transferStation" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[glValue]"
+                      dataType="wstr"
+                      length="281"
+                      name="glValue" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[requestor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      name="requestor" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[discrepancy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="discrepancy" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[woStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      name="woStatus" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[payerCust]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="payerCust" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Lat]"
+                      dataType="r8"
+                      name="Lat" />
+                    <externalMetadataColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Long]"
+                      dataType="r8"
+                      name="Long" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[repType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[repType]"
+                      name="repType" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PayerAcct]"
+                      dataType="wstr"
+                      length="19"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[PayerAcct]"
+                      name="PayerAcct" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[serviceDate]"
+                      dataType="dbDate"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[serviceDate]"
+                      name="serviceDate" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[invoiceDate]"
+                      dataType="dbDate"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[invoiceDate]"
+                      name="invoiceDate" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dateReceived]"
+                      dataType="dbDate"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dateReceived]"
+                      name="dateReceived" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[STMT_NUMBER]"
+                      dataType="i4"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[STMT_NUMBER]"
+                      name="STMT_NUMBER" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Cust]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Cust]"
+                      name="Cust" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Locn]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Locn]"
+                      name="Locn" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[territory]"
+                      dataType="wstr"
+                      length="30"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[territory]"
+                      name="territory" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[lineArea]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[lineArea]"
+                      name="lineArea" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[lineSvc]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[lineSvc]"
+                      name="lineSvc" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[contType]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[contType]"
+                      name="contType" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WO#]"
+                      dataType="i4"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WO#]"
+                      name="WO#" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[userName]"
+                      dataType="wstr"
+                      length="201"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[userName]"
+                      name="userName" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[uom]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[uom]"
+                      name="uom" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[lineDecription]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[lineDecription]"
+                      name="lineDecription" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[comment]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[comment]"
+                      name="comment" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[category]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[category]"
+                      name="category" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[finalDest]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[finalDest]"
+                      name="finalDest" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[serviceCode]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[serviceCode]"
+                      name="serviceCode" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[subTotNoTax]"
+                      dataType="numeric"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[subTotNoTax]"
+                      name="subTotNoTax"
+                      precision="37"
+                      scale="10" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[totalCost]"
+                      dataType="r8"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[totalCost]"
+                      name="totalCost" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[gstAmt]"
+                      dataType="numeric"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[gstAmt]"
+                      name="gstAmt"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[pstAmt]"
+                      dataType="numeric"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[pstAmt]"
+                      name="pstAmt"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[hstAmt]"
+                      dataType="numeric"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[hstAmt]"
+                      name="hstAmt"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[units]"
+                      dataType="numeric"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[units]"
+                      name="units"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[unitPrice]"
+                      dataType="numeric"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[unitPrice]"
+                      name="unitPrice"
+                      precision="38"
+                      scale="20" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[defaultPrice]"
+                      dataType="r8"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[defaultPrice]"
+                      name="defaultPrice" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[priClass]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[priClass]"
+                      name="priClass" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[secClass]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[secClass]"
+                      name="secClass" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[billingType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="4"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[billingType]"
+                      name="billingType" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[landDesc]"
+                      codePage="1252"
+                      dataType="str"
+                      length="19"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[landDesc]"
+                      name="landDesc" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[custArea]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[custArea]"
+                      name="custArea" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantity]"
+                      dataType="numeric"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[quantity]"
+                      name="quantity"
+                      precision="18"
+                      scale="5" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[manifest]"
+                      dataType="wstr"
+                      length="50"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[manifest]"
+                      name="manifest" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[wasteNotes]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[wasteNotes]"
+                      name="wasteNotes" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[invType]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[invType]"
+                      name="invType" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[genAcct#]"
+                      dataType="wstr"
+                      length="19"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[genAcct#]"
+                      name="genAcct#" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[lineStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[lineStatus]"
+                      name="lineStatus" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[percentDone]"
+                      dataType="r8"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[percentDone]"
+                      name="percentDone" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[transferStation]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[transferStation]"
+                      name="transferStation" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[glValue]"
+                      dataType="wstr"
+                      length="281"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[glValue]"
+                      name="glValue" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[requestor]"
+                      codePage="1252"
+                      dataType="str"
+                      length="255"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[requestor]"
+                      name="requestor" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[discrepancy]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[discrepancy]"
+                      name="discrepancy" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[woStatus]"
+                      codePage="1252"
+                      dataType="str"
+                      length="9"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[woStatus]"
+                      name="woStatus" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[payerCust]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[payerCust]"
+                      name="payerCust" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Lat]"
+                      dataType="r8"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Lat]"
+                      name="Lat" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Long]"
+                      dataType="r8"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Long]"
+                      name="Long" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\HMM_SALESREV_UNBILLED.Paths[OLE DB Source Output]"
+              endId="Package\HMM_SALESREV_UNBILLED\ODBC Destination.Inputs[ODBC Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\HMM_SALESREV_UNBILLED\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate wm_hmm_salesrev_unbilled"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B8E53EC2-7D66-4780-8850-E672FA69BF56}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate wm_hmm_salesrev_unbilled"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{C1FCBD90-34E1-43A9-BC3F-5F4779299450}"
+          SQLTask:SqlStatementSource="truncate   table &quot;WM_DM&quot;.&quot;HMM_SALESREV_UNBILLED&quot; ;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{6728FA1B-3255-4BAC-AAF5-D745ECA4F8B7}"
+      DTS:From="Package\Truncate wm_hmm_salesrev_unbilled"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\HMM_SALESREV_UNBILLED" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="213,42"
+          Id="Package\HMM_SALESREV_UNBILLED"
+          TopLeft="419,280" />
+        <NodeLayout
+          Size="259,42"
+          Id="Package\Truncate wm_hmm_salesrev_unbilled"
+          TopLeft="60,60" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="189.5,102">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="336,178"
+              Start="0,0"
+              End="336,170.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,85" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,85"
+                    Point2="0,89"
+                    Point3="4,89" />
+                  <mssgle:LineSegment
+                    End="332,89" />
+                  <mssgle:CubicBezierSegment
+                    Point1="332,89"
+                    Point2="336,89"
+                    Point3="336,93" />
+                  <mssgle:LineSegment
+                    End="336,170.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\HMM_SALESREV_UNBILLED">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="165,42"
+          Id="Package\HMM_SALESREV_UNBILLED\ODBC Destination"
+          TopLeft="646,264" />
+        <NodeLayout
+          Size="152,42"
+          Id="Package\HMM_SALESREV_UNBILLED\OLE DB Source"
+          TopLeft="132,164" />
+        <EdgeLayout
+          Id="Package\HMM_SALESREV_UNBILLED.Paths[OLE DB Source Output]"
+          TopLeft="208,206">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="520.5,58"
+              Start="0,0"
+              End="520.5,50.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,25"
+                    Point2="0,29"
+                    Point3="4,29" />
+                  <mssgle:LineSegment
+                    End="516.5,29" />
+                  <mssgle:CubicBezierSegment
+                    Point1="516.5,29"
+                    Point2="520.5,29"
+                    Point3="520.5,33" />
+                  <mssgle:LineSegment
+                    End="520.5,50.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\HMM_SALESREV_UNBILLED\ODBC Destination">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\HMM_SALESREV_UNBILLED\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

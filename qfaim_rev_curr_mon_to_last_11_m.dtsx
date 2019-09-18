@@ -1,0 +1,1188 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/31/2015 11:22:43 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="LAP-2K3LFV1"
+  DTS:CreatorName="CCS\bcheruvathur"
+  DTS:DTSID="{6840D8BC-E5F0-48E7-891B-8992AD36E3CB}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1300.371"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="qfaim_rev_curr_mon_to_last_11_m"
+  DTS:PackageType="5"
+  DTS:VersionBuild="40"
+  DTS:VersionGUID="{1E62F627-1838-4370-80E6-F388700811D5}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[qfail_prod.Qfaim_ro 1]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{0F99736B-1F71-4BC1-B734-118A8D092C75}"
+      DTS:ObjectName="qfail_prod.Qfaim_ro 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=Qfaim_ro;Dsn=QFMPRD;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[qfail_test.Qfaim_ro]"
+      DTS:CreationName="ODBC"
+      DTS:DTSID="{7B02A9D9-4C20-4CBC-BA01-227DE13DA1B5}"
+      DTS:ObjectName="qfail_test.Qfaim_ro">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="uid=Qfaim_ro;Dsn=QFMPRD;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[qfaim_destination]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{799FC2A1-51AD-4870-98C4-BBA7DAD0CC59}"
+      DTS:ObjectName="qfaim_destination">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x0022_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="\\cdcvfil06p\shared\01 - Planning &amp; Performance Public\Forecast Submission Files\01 Fluids &amp; Solids\QFAIM Data from Trerise\QFAIM_REVENUE_CURRENT_TO_LAST_11_MONTHS.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Production Date"
+              DTS:DTSID="{8C0EBC25-2DEA-4831-B3AE-315E5D6293E4}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Facility Group No"
+              DTS:DTSID="{BDB2795A-9EF8-4BBE-82A9-6B0FF6DA40A0}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Facility Group Name"
+              DTS:DTSID="{26D1ECB9-52DF-4686-BCD5-531021292B73}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Ticket No"
+              DTS:DTSID="{703C7ABD-E39C-47BE-AC29-E9B1ADEAAE2F}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Ticket Date"
+              DTS:DTSID="{64F13CA7-3D20-434C-8F7F-B04587FA53DA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Ticket Status"
+              DTS:DTSID="{53174BCD-2810-4ADB-9677-E8501146E516}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Statement ID"
+              DTS:DTSID="{CCF705A8-5FFB-478C-9FAC-92231EFB66F3}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BA No"
+              DTS:DTSID="{B2E6585B-F84A-4699-87DD-4AFE97C009DB}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="BA Name"
+              DTS:DTSID="{51DE862F-C97C-46DC-A880-6CE8730848D7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Service Type Code"
+              DTS:DTSID="{85CF0651-0BF8-4C10-AD47-8AC7978B2EF7}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Service Type"
+              DTS:DTSID="{A9C5F833-B0B9-45C4-B028-699A3523967A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Substance Code"
+              DTS:DTSID="{AA051CC4-B3B4-472F-B8AF-2957A4E6B2BA}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Substance Name"
+              DTS:DTSID="{204727AB-D303-44F1-8B0B-D7C40206E9C1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Producer Value"
+              DTS:DTSID="{A51B6EE3-4AC7-40A6-A633-939FC5884080}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Applied Volume"
+              DTS:DTSID="{D0BD91D0-B4BE-43AA-8080-A9A8ED8265C1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Who Created Ticket"
+              DTS:DTSID="{3FF95136-BC00-477E-81CA-3D0E7BE3ECC8}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="When Created Ticket"
+              DTS:DTSID="{0303DEE1-B0B2-431B-95DB-2F46136C95D3}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\last 12 months"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{E168B274-D2B4-48A2-9D83-11FB7EC4C8B3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="last 12 months"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\last 12 months\Flat File Destination"
+              componentClassID="Microsoft.FlatFileDestination"
+              contactInfo="Flat File Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Flat File Destination"
+              localeId="1033"
+              name="Flat File Destination">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether the data will overwrite or append to the destination file."
+                  name="Overwrite">true</property>
+                <property
+                  dataType="System.Null"
+                  description="Specifies the text to write to the destination file before any data is written."
+                  expressionType="Notify"
+                  name="Header" />
+                <property
+                  dataType="System.Boolean"
+                  description="When text qualifier is enabled, specifies whether the text qualifier in the data written to the destination file will be escaped or not."
+                  name="EscapeQualifier">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\last 12 months\Flat File Destination.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[qfaim_destination]"
+                  connectionManagerRefId="Package.ConnectionManagers[qfaim_destination]"
+                  name="FlatFileConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input]"
+                  hasSideEffects="true"
+                  name="Flat File Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[PROD_DT]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="PROD_DT"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Production Date]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[PROD_DT]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[FACILITY_GRP_NO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="FACILITY_GRP_NO"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Facility Group No]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[FACILITY_GRP_NO]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[FACILITY_GRP_NM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="FACILITY_GRP_NM"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Facility Group Name]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[FACILITY_GRP_NM]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[TKT_NO]"
+                      cachedDataType="numeric"
+                      cachedName="TKT_NO"
+                      cachedPrecision="9"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Ticket No]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[TKT_NO]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[TKT_DT]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="TKT_DT"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Ticket Date]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[TKT_DT]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[STATUS_CD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="STATUS_CD"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Ticket Status]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[STATUS_CD]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[STMT_ID]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="STMT_ID"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Statement ID]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[STMT_ID]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[BA_NO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="BA_NO"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BA No]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[BA_NO]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[BA_NM1]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="60"
+                      cachedName="BA_NM1"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BA Name]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[BA_NM1]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[SERVICE_TYPE_CD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="SERVICE_TYPE_CD"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Service Type Code]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[SERVICE_TYPE_CD]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[SERVICE_TYPE_NM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="SERVICE_TYPE_NM"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Service Type]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[SERVICE_TYPE_NM]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[SUBST_CD]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="10"
+                      cachedName="SUBST_CD"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Substance Code]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[SUBST_CD]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[SUBST_NM]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="SUBST_NM"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Substance Name]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[SUBST_NM]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[VAULE_PR]"
+                      cachedDataType="r8"
+                      cachedName="VAULE_PR"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Producer Value]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[VAULE_PR]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[APPLIED_VOL]"
+                      cachedDataType="r8"
+                      cachedName="APPLIED_VOL"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Applied Volume]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[APPLIED_VOL]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[CREATED_BY]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="30"
+                      cachedName="CREATED_BY"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Who Created Ticket]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[CREATED_BY]" />
+                    <inputColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].Columns[CREATION_DT]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="CREATION_DT"
+                      externalMetadataColumnId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[When Created Ticket]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[CREATION_DT]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Production Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Production Date" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Facility Group No]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Facility Group No" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Facility Group Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Facility Group Name" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Ticket No]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Ticket No" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Ticket Date]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Ticket Date" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Ticket Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Ticket Status" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Statement ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Statement ID" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BA No]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BA No" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[BA Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="BA Name" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Service Type Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Service Type Code" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Service Type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Service Type" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Substance Code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Substance Code" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Substance Name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Substance Name" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Producer Value]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Producer Value" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Applied Volume]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Applied Volume" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[Who Created Ticket]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="Who Created Ticket" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input].ExternalColumns[When Created Ticket]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="When Created Ticket" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+            </component>
+            <component
+              refId="Package\last 12 months\ODBC Source"
+              componentClassID="Attunity.SSISODBCSrc"
+              description="ODBC Source"
+              name="ODBC Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="The name of the table to be fetched."
+                  expressionType="Notify"
+                  name="TableName"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand">SELECT 
+QQM_Q.PROD_DT,
+QQM_Q.FACILITY_GRP_NO,
+QQM_Q.FACILITY_GRP_NM,
+QQM_Q.TKT_NO,
+QQM_Q.TKT_DT,
+QQM_Q.STATUS_CD,
+QQM_Q.STMT_ID,
+QQM_Q.BA_NO,
+QQM_Q.BA_NM1,
+QQM_Q.SERVICE_TYPE_CD,
+QQM_Q.SERVICE_TYPE_NM,
+QQM_Q.SUBST_CD,
+QQM_Q.SUBST_NM,
+-- SUM(QFAIM.QQM_TICKET_VAL_VW.VALUE_PR),
+-- SUM(QFAIM.QQM_TICKET_VAL_VW.APPLIED_VOL),
+SUM(QQM_Q.VALUE_PR) as VAULE_PR,
+SUM(QQM_Q.APPLIED_VOL) as APPLIED_VOL,
+QQM_Q.CREATED_BY,
+QQM_Q.CREATION_DT
+
+FROM
+(
+SELECT distinct
+  QFAIM.QQM_TICKET_VAL_VW.PROD_DT,
+  QFAIM.QQM_TICKET_VAL_VW.FACILITY_GRP_NO,
+  QCTRL_FACILITY_GRP_HDR_PAV.FACILITY_GRP_NM,
+  QFAIM.QQM_TICKET_VAL_VW.TKT_NO,
+  QFAIM.QCTRL_TICKET.TKT_DT,
+  QFAIM.QCTRL_TICKET.STATUS_CD,
+  QFAIM.QQM_TICKET_VAL_VW.STMT_ID,
+  QFAIM.QQM_TICKET_VAL_VW.BA_NO,
+  SCTRL_BA_ENTITY_TV.BA_NM1,
+  QFAIM.QQM_TICKET_VAL_VW.SERVICE_TYPE_CD,
+  QVALD_SERVICE_TYPE_TV.SERVICE_TYPE_NM,
+  QFAIM.QQM_TICKET_VAL_VW.SUBST_CD,
+  QVALD_SUBSTANCE_TV.SUBST_NM,
+-- SUM(QFAIM.QQM_TICKET_VAL_VW.VALUE_PR),
+-- SUM(QFAIM.QQM_TICKET_VAL_VW.APPLIED_VOL),
+  QFAIM.QQM_TICKET_VAL_VW.VALUE_PR,
+  QFAIM.QQM_TICKET_VAL_VW.APPLIED_VOL,
+  QFAIM.QCTRL_TICKET.CREATED_BY,
+  QFAIM.QCTRL_TICKET.CREATION_DT
+FROM
+  QFAIM.QVALD_SUBSTANCE  QVALD_SUBSTANCE_TV RIGHT OUTER JOIN QFAIM.QQM_TICKET_VAL_VW ON (QFAIM.QQM_TICKET_VAL_VW.SUBST_CD=QVALD_SUBSTANCE_TV.SUBST_CD)
+   LEFT OUTER JOIN QFAIM.SCTRL_BA_ENTITY  SCTRL_BA_ENTITY_TV ON (QFAIM.QQM_TICKET_VAL_VW.BA_NO=SCTRL_BA_ENTITY_TV.BA_NO)
+   LEFT OUTER JOIN QFAIM.QVALD_SERVICE_TYPE  QVALD_SERVICE_TYPE_TV ON (QVALD_SERVICE_TYPE_TV.SERVICE_TYPE_CD=QFAIM.QQM_TICKET_VAL_VW.SERVICE_TYPE_CD)
+   LEFT OUTER JOIN QFAIM.QCTRL_FACILITY_GRP_HDR  QCTRL_FACILITY_GRP_HDR_PAV ON (QFAIM.QQM_TICKET_VAL_VW.FACILITY_GRP_NO=QCTRL_FACILITY_GRP_HDR_PAV.FACILITY_GRP_NO and QFAIM.QQM_TICKET_VAL_VW.PROD_DT between QCTRL_FACILITY_GRP_HDR_PAV.EFF_DT_FROM and QCTRL_FACILITY_GRP_HDR_PAV.EFF_DT_TO)
+   LEFT OUTER JOIN QFAIM.QQM_STMT_CONTROL_VW  QQM_STMT_CONTROL_VW_TV ON (QQM_STMT_CONTROL_VW_TV.TKT_NO=QFAIM.QQM_TICKET_VAL_VW.TKT_NO and QQM_STMT_CONTROL_VW_TV.STMT_RUN_ID=QFAIM.QQM_TICKET_VAL_VW.VAL_RUN_ID)
+   LEFT OUTER JOIN ( 
+  select s.facility_grp_no, s.service_type_cd, s.eff_dt_from as service_dt_from, s.eff_dt_to as service_dt_to, s.service_amt, s.service_sch_id
+     , t.stl_terms_no, t.stl_terms_descr
+     , ps.eff_dt_from as prate_dt_from, ps.eff_dt_to as prate_dt_to, ps.fixed_rate as prate_fixed_Rate
+     , aps.eff_dt_from as arate_dt_from, aps.eff_dt_to as arate_dt_to, aps.fixed_rate as arate_fixed_Rate
+     , coalesce(s.service_amt, coalesce(ps.fixed_rate, coalesce(aps.fixed_rate,0.0))) as PLANT_BASED_RATE
+from       QFAIM.qctrl_stl_terms_service s
+inner join QFAIM.qctrl_stl_terms         t
+      on ( s.stl_terms_no = t.stl_terms_no and
+           s.eff_dt_from  = t.eff_dt_from  and
+           'PLNT'         = t.term_lvl_cd)
+left outer join QFAIM.qctrl_rate_sch ps
+      on ( s.facility_grp_no = ps.facility_grp_no and
+           s.service_sch_id  = ps.sch_id          and
+           'FEE'             = ps.sch_type_cd)
+left outer join QFAIM.qctrl_rate_sch aps
+      on ( 'ALL'             = aps.facility_grp_no and
+           s.service_sch_id  = aps.sch_id          and
+           'FEE'             = aps.sch_type_cd)
+
+  )  PLANT_BASED_RATE_TV ON (QFAIM.QQM_TICKET_VAL_VW.FACILITY_GRP_NO=PLANT_BASED_RATE_TV.FACILITY_GRP_NO and QFAIM.QQM_TICKET_VAL_VW.SERVICE_TYPE_CD=PLANT_BASED_RATE_TV.SERVICE_TYPE_CD and QFAIM.QQM_TICKET_VAL_VW.PROD_DT BETWEEN PLANT_BASED_RATE_TV.SERVICE_DT_FROM and PLANT_BASED_RATE_TV.SERVICE_DT_TO and (QFAIM.QQM_TICKET_VAL_VW.PROD_DT BETWEEN PLANT_BASED_RATE_TV.PRATE_DT_FROM AND PLANT_BASED_RATE_TV.PRATE_DT_TO OR  PLANT_BASED_RATE_TV.PRATE_DT_FROM IS NULL) and (QFAIM.QQM_TICKET_VAL_VW.PROD_DT between PLANT_BASED_RATE_TV.ARATE_DT_FROM and PLANT_BASED_RATE_TV.ARATE_DT_TO or  PLANT_BASED_RATE_TV.ARATE_DT_FROM is null))
+   LEFT OUTER JOIN QFAIM.QCTRL_TICKET ON (QFAIM.QCTRL_TICKET.TKT_NO=QFAIM.QQM_TICKET_VAL_VW.TKT_NO)
+   LEFT OUTER JOIN ( 
+  SELECT TKT_NO, CASE WHEN COUNT &lt;&gt; 0 THEN 'YES' ELSE 'NO' END AS POSTED_RECORDS_EXIST
+FROM 
+(
+SELECT A.TKT_NO, COUNT(B.TKT_NO) AS COUNT
+FROM QFAIM.QCTRL_TICKET A
+LEFT OUTER JOIN QFAIM.QPOST_TICKET_VAL_SUMMARY B
+ON A.TKT_NO = B.TKT_NO
+GROUP BY A.TKT_NO
+)
+  )  TKT_VAL_POSTED_EXISTS_TV ON (TKT_VAL_POSTED_EXISTS_TV.TKT_NO=QFAIM.QQM_TICKET_VAL_VW.TKT_NO)
+  
+WHERE
+  (
+   (
+    (
+     CASE WHEN QFAIM.QQM_TICKET_VAL_VW.POSTED_FLAG = 'Y' THEN 'YES' WHEN QFAIM.QQM_TICKET_VAL_VW.POSTED_FLAG = 'N' THEN 'NO' END  =  'YES'
+     AND
+     QFAIM.QQM_TICKET_VAL_VW.PROCESS_ID  IN  ( 'CUSTJE','INTERJE','INTRAJE'  )
+     AND
+     QFAIM.QCTRL_TICKET.STATUS_CD  &lt;&gt;  'INV'
+    )
+    OR
+    (
+     CASE WHEN QFAIM.QQM_TICKET_VAL_VW.POSTED_FLAG = 'Y' THEN 'YES' WHEN QFAIM.QQM_TICKET_VAL_VW.POSTED_FLAG = 'N' THEN 'NO' END  =  'NO'
+     AND
+     QFAIM.QQM_TICKET_VAL_VW.PROCESS_ID  IN  ( 'CUSTJEFLD','INTERJEFLD','INTRAJEFLD'  )
+     AND
+     TKT_VAL_POSTED_EXISTS_TV.POSTED_RECORDS_EXIST  IN  ( 'NO'  )
+     AND
+     QFAIM.QCTRL_TICKET.STATUS_CD  &lt;&gt;  'INV'
+    )
+    OR
+    (
+     QFAIM.QCTRL_TICKET.STATUS_CD  IN  ( 'INV'  )
+     AND
+     QFAIM.QQM_TICKET_VAL_VW.PROCESS_ID  =  'RESOLVE'
+     AND
+     QFAIM.QQM_TICKET_VAL_VW.STMT_ID  &lt;&gt;  '0'
+     AND
+     QFAIM.QQM_TICKET_VAL_VW.STMT_ID  NOT LIKE  'W%'
+     AND
+     ( QQM_STMT_CONTROL_VW_TV.LATEST_IND = 1  )
+    )
+   )
+   AND
+   QFAIM.PLANT_BASED_RATE_TV.STL_TERMS_DESCR  &lt;&gt;  '...'
+   --AND
+   ---QFAIM.QCTRL_FACILITY_GRP_HDR_PAV.FACILITY_GRP_NM   IN  ('PINCHER CREEK LANDFILL')
+   AND
+   QFAIM.QCTRL_TICKET.STATUS_CD  &lt;&gt;  'DEL'
+   AND
+   --QFAIM.QQM_TICKET_VAL_VW.PROD_DT  in trunc(SYSDATE, 'MM')---daily
+   QFAIM.QQM_TICKET_VAL_VW.PROD_DT  between ( trunc(add_months(sysdate,-11), 'MM')) and trunc(SYSDATE, 'MM')--last 12 months
+  --QFAIM.QQM_TICKET_VAL_VW.PROD_DT  in trunc(add_months(sysdate,-1))---test
+ )
+  
+  )QQM_Q
+  
+GROUP BY
+QQM_Q.PROD_DT,
+QQM_Q.FACILITY_GRP_NO,
+QQM_Q.FACILITY_GRP_NM,
+QQM_Q.TKT_NO,
+QQM_Q.TKT_DT,
+QQM_Q.STATUS_CD,
+QQM_Q.STMT_ID,
+QQM_Q.BA_NO,
+QQM_Q.BA_NM1,
+QQM_Q.SERVICE_TYPE_CD,
+QQM_Q.SERVICE_TYPE_NM,
+QQM_Q.SUBST_CD,
+QQM_Q.SUBST_NM,
+QQM_Q.CREATED_BY,
+QQM_Q.CREATION_DT
+HAVING
+  --SUM(QFAIM.QQM_TICKET_VAL_VW.VALUE_PR)  &lt;&gt;  0
+  SUM(QQM_Q.VALUE_PR)&lt;&gt;0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specify the number of rows fetched per batch."
+                  expressionType="Notify"
+                  name="BatchSize">1000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines the chunk size allocation for LOB columns"
+                  expressionType="Notify"
+                  name="LobChunkSize">32768</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines how the component exposes CHAR columns. If False, CHAR columns are exposed as (multi-)byte strings (DT_STR), if True, CHAR columns are exposed as wide strings (DT_WSTR)"
+                  expressionType="Notify"
+                  name="ExposeCharColumnsAsUnicode">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds to wait for an SQL statement to execute before returning to the application."
+                  expressionType="Notify"
+                  name="StatementTimeout">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="The code page to use when code page information is unavailable from the data source."
+                  expressionType="Notify"
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Int32"
+                  description="The mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The method used for fetching data."
+                  expressionType="Notify"
+                  name="FetchMethod"
+                  typeConverter="FetchMethod">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="The ODBC C data type for binding numeric data."
+                  expressionType="Notify"
+                  name="BindNumericAs"
+                  typeConverter="BindNumericAs">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Determines how the component would bind columns of (multi)-byte string types (i.e., SQL_CHAR, SQL_VARCHAR, SQL_LONGVARCHAR). The options are: Unicode (SQL_C_WCHAR) and ANSI (SQL_C_CHAR)."
+                  expressionType="Notify"
+                  name="BindCharColumnsAs"
+                  typeConverter="BindCharColumnsAs">0</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\last 12 months\ODBC Source.Connections[ODBCConnection]"
+                  connectionManagerID="Package.ConnectionManagers[qfail_prod.Qfaim_ro 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[qfail_prod.Qfaim_ro 1]"
+                  description="The ODBC runtime connection"
+                  name="ODBCConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output]"
+                  errorRowDisposition="FailComponent"
+                  name="ODBC Source Output"
+                  truncationRowDisposition="FailComponent">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[PROD_DT]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PROD_DT]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[PROD_DT]"
+                      name="PROD_DT" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[FACILITY_GRP_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FACILITY_GRP_NO]"
+                      length="10"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[FACILITY_GRP_NO]"
+                      name="FACILITY_GRP_NO" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[FACILITY_GRP_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FACILITY_GRP_NM]"
+                      length="50"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[FACILITY_GRP_NM]"
+                      name="FACILITY_GRP_NM" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[TKT_NO]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TKT_NO]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[TKT_NO]"
+                      name="TKT_NO"
+                      precision="9" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[TKT_DT]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TKT_DT]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[TKT_DT]"
+                      name="TKT_DT" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[STATUS_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[STATUS_CD]"
+                      length="3"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[STATUS_CD]"
+                      name="STATUS_CD" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[STMT_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[STMT_ID]"
+                      length="20"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[STMT_ID]"
+                      name="STMT_ID" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[BA_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[BA_NO]"
+                      length="10"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[BA_NO]"
+                      name="BA_NO" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[BA_NM1]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[BA_NM1]"
+                      length="60"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[BA_NM1]"
+                      name="BA_NM1" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[SERVICE_TYPE_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[SERVICE_TYPE_CD]"
+                      length="10"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[SERVICE_TYPE_CD]"
+                      name="SERVICE_TYPE_CD" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[SERVICE_TYPE_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[SERVICE_TYPE_NM]"
+                      length="50"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[SERVICE_TYPE_NM]"
+                      name="SERVICE_TYPE_NM" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[SUBST_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[SUBST_CD]"
+                      length="10"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[SUBST_CD]"
+                      name="SUBST_CD" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[SUBST_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[SUBST_NM]"
+                      length="100"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[SUBST_NM]"
+                      name="SUBST_NM" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[VAULE_PR]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[VAULE_PR]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[VAULE_PR]"
+                      name="VAULE_PR" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[APPLIED_VOL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[APPLIED_VOL]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[APPLIED_VOL]"
+                      name="APPLIED_VOL" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[CREATED_BY]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[CREATED_BY]"
+                      length="30"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[CREATED_BY]"
+                      name="CREATED_BY" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[CREATION_DT]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[CREATION_DT]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].Columns[CREATION_DT]"
+                      name="CREATION_DT" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PROD_DT]"
+                      dataType="dbTimeStamp"
+                      name="PROD_DT" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FACILITY_GRP_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="FACILITY_GRP_NO" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FACILITY_GRP_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="FACILITY_GRP_NM" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TKT_NO]"
+                      dataType="numeric"
+                      name="TKT_NO"
+                      precision="9" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TKT_DT]"
+                      dataType="dbTimeStamp"
+                      name="TKT_DT" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[STATUS_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="STATUS_CD" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[STMT_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="STMT_ID" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[BA_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="BA_NO" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[BA_NM1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="60"
+                      name="BA_NM1" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[SERVICE_TYPE_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="SERVICE_TYPE_CD" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[SERVICE_TYPE_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="SERVICE_TYPE_NM" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[SUBST_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      length="10"
+                      name="SUBST_CD" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[SUBST_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="SUBST_NM" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[VAULE_PR]"
+                      dataType="r8"
+                      name="VAULE_PR" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[APPLIED_VOL]"
+                      dataType="r8"
+                      name="APPLIED_VOL" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[CREATED_BY]"
+                      codePage="1252"
+                      dataType="str"
+                      length="30"
+                      name="CREATED_BY" />
+                    <externalMetadataColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[CREATION_DT]"
+                      dataType="dbTimeStamp"
+                      name="CREATION_DT" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output]"
+                  isErrorOut="true"
+                  name="ODBC Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[PROD_DT]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[PROD_DT]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[PROD_DT]"
+                      name="PROD_DT" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[FACILITY_GRP_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FACILITY_GRP_NO]"
+                      length="10"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[FACILITY_GRP_NO]"
+                      name="FACILITY_GRP_NO" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[FACILITY_GRP_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[FACILITY_GRP_NM]"
+                      length="50"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[FACILITY_GRP_NM]"
+                      name="FACILITY_GRP_NM" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[TKT_NO]"
+                      dataType="numeric"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TKT_NO]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[TKT_NO]"
+                      name="TKT_NO"
+                      precision="9" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[TKT_DT]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[TKT_DT]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[TKT_DT]"
+                      name="TKT_DT" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[STATUS_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[STATUS_CD]"
+                      length="3"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[STATUS_CD]"
+                      name="STATUS_CD" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[STMT_ID]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[STMT_ID]"
+                      length="20"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[STMT_ID]"
+                      name="STMT_ID" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[BA_NO]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[BA_NO]"
+                      length="10"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[BA_NO]"
+                      name="BA_NO" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[BA_NM1]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[BA_NM1]"
+                      length="60"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[BA_NM1]"
+                      name="BA_NM1" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[SERVICE_TYPE_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[SERVICE_TYPE_CD]"
+                      length="10"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[SERVICE_TYPE_CD]"
+                      name="SERVICE_TYPE_CD" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[SERVICE_TYPE_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[SERVICE_TYPE_NM]"
+                      length="50"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[SERVICE_TYPE_NM]"
+                      name="SERVICE_TYPE_NM" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[SUBST_CD]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[SUBST_CD]"
+                      length="10"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[SUBST_CD]"
+                      name="SUBST_CD" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[SUBST_NM]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[SUBST_NM]"
+                      length="100"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[SUBST_NM]"
+                      name="SUBST_NM" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[VAULE_PR]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[VAULE_PR]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[VAULE_PR]"
+                      name="VAULE_PR" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[APPLIED_VOL]"
+                      dataType="r8"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[APPLIED_VOL]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[APPLIED_VOL]"
+                      name="APPLIED_VOL" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[CREATED_BY]"
+                      codePage="1252"
+                      dataType="str"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[CREATED_BY]"
+                      length="30"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[CREATED_BY]"
+                      name="CREATED_BY" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[CREATION_DT]"
+                      dataType="dbTimeStamp"
+                      externalMetadataColumnId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output].ExternalColumns[CREATION_DT]"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[CREATION_DT]"
+                      name="CREATION_DT" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\last 12 months.Paths[ODBC Source Output]"
+              endId="Package\last 12 months\Flat File Destination.Inputs[Flat File Destination Input]"
+              name="ODBC Source Output"
+              startId="Package\last 12 months\ODBC Source.Outputs[ODBC Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\last 12 months"
+          TopLeft="90,176" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\last 12 months">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="144,42"
+          Id="Package\last 12 months\ODBC Source"
+          TopLeft="162,111" />
+        <NodeLayout
+          Size="174,42"
+          Id="Package\last 12 months\Flat File Destination"
+          TopLeft="292,242" />
+        <EdgeLayout
+          Id="Package\last 12 months.Paths[ODBC Source Output]"
+          TopLeft="234,153">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="145,89"
+              Start="0,0"
+              End="145,81.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,40.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,40.5"
+                    Point2="0,44.5"
+                    Point3="4,44.5" />
+                  <mssgle:LineSegment
+                    End="141,44.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="141,44.5"
+                    Point2="145,44.5"
+                    Point3="145,48.5" />
+                  <mssgle:LineSegment
+                    End="145,81.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\last 12 months\ODBC Source">
+    <Properties>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
